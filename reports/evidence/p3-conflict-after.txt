@@ -1,0 +1,24 @@
+# DevOps Course 2026
+
+Учебный репозиторий курса «Инструменты DevOps» для практических работ.
+
+## Студент
+ФИО: Кудояров Денис Рустемович
+
+Группа: ЭФБО-18-24
+
+## Описание
+Учебный проект для освоения Git, работы с ветками, конфликтами и несколькими удалёнными репозиториями.
+
+## Стек
+- Git / GitHub
+- Python
+- Docker (в следующих работах)
+
+*   602ca10 (HEAD -> conflict/readme-update-1) merge: resolve conflict in README.md
+|\  
+| * 92a6c5a (conflict/readme-update-2) docs: update README with student info (variant 2)
+* | a72d0dd docs: update README with student info (variant 1)
+|/  
+* c0559c1 (codex/practices-2-3) docs: compare Git and Subversion
+* acf9dda docs: add IDE vs CLI notes

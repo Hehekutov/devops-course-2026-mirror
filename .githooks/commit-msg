@@ -1,0 +1,12 @@
+#!/bin/sh
+# Validate only the subject, allowing standard Git-generated revert commits.
+subject=$(head -n 1 "$1")
+if printf '%s\n' "$subject" | grep -Eq '^(feat|fix|docs|chore|refactor|merge|test|ci|build|perf|style|revert)(\([^)]+\))?!?: .+'; then
+    exit 0
+fi
+case "$subject" in
+    'Revert "'*) exit 0 ;;
+esac
+printf '%s\n' 'ERROR: commit message must follow Conventional Commits.' >&2
+printf '%s\n' 'Expected: <type>: <description>; example: docs: update README' >&2
+exit 1

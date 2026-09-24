@@ -1,0 +1,11 @@
+*   0c0e776 (HEAD -> demo/merge-result) merge: integrate feature A
+|\  
+| * 46ff5fc (demo/merge-example) docs: add details for feature A
+| * c59a257 feat: add feature A description
+* | 25b70ff (codex/practices-2-3) docs: update integration notes
+|/  
+*   602ca10 merge: resolve conflict in README.md
+|\  
+| * 92a6c5a docs: update README with student info (variant 2)
+* | a72d0dd docs: update README with student info (variant 1)
+|/  

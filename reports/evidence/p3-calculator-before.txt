@@ -1,0 +1,6 @@
+* ff6cb73 (HEAD -> feature/calculator) oops
+* 2f779f8 add docs
+* 206e0ab fix typo in subtract
+* c8164e4 add subtract
+* f2a8929 wip
+* a5d9075 start calculator

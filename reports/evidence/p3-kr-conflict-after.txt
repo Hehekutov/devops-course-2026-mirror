@@ -1,0 +1,9 @@
+# Решение
+Общую историю интегрируем через merge; личную неопубликованную ветку можно обновить через rebase.
+
+*   a56068d (HEAD -> prep/conflict-one) merge: resolve assessment practice conflict
+|\  
+| * 68989f3 (prep/conflict-two) docs: add rebase option
+* | 30a300c docs: add merge option
+|/  
+* 3e02e05 (prep/kr-practice, codex/practices-2-3) docs: prepare answers for Git assessment

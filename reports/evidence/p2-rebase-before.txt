@@ -1,0 +1,3 @@
+* 6e02966 (HEAD -> practice/rebase-playground) docs: explain choice
+* 92cff0c docs: explain rebase
+* 6ab006a docs: explain merge
