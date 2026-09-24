@@ -70,3 +70,19 @@
 
 ![p3-revert](screenshots/p3-revert.png)
 
+
+## p3-multi-remote
+
+![p3-multi-remote](screenshots/p3-multi-remote.png)
+
+## github-origin
+
+![github-origin](screenshots/github-origin.png)
+
+## github-mirror
+
+![github-mirror](screenshots/github-mirror.png)
+
+## vscode-restricted
+
+![vscode-restricted](screenshots/vscode-restricted.png)
