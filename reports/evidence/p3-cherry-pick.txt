@@ -1,0 +1,13 @@
+* 9f0bac9 (HEAD -> codex/practices-2-3) fix: critical bug in calculator
+* 977dceb (feature/calculator) docs: add calculator README
+* 20fcfe1 feat: implement subtract function
+
+# Calculator app
+def add(a, b):
+    return a + b
+# TODO: add more functions
+
+def subtract(a, b):
+    return a - b  # fixed
+
+IMPORTANT_FIX = True

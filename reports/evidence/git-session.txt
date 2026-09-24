@@ -1,0 +1,553 @@
+$ git branch -a
+* codex/practices-2-3
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/feature/hobby-project
+  remotes/origin/main
+
+$ git log --oneline --graph --decorate -10 --all
+* a00ea1b (origin/feature/hobby-project) feat: add hobby project description
+* e4217d7 (HEAD -> codex/practices-2-3, origin/main, origin/HEAD, main) Create main.py
+* 2894dd4 Initial commit
+
+$ git add ide_notes.md
+warning: in the working copy of 'ide_notes.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: add IDE vs CLI notes
+[codex/practices-2-3 acf9dda] docs: add IDE vs CLI notes
+ 1 file changed, 9 insertions(+)
+ create mode 100644 ide_notes.md
+
+$ git add svn_comparison.md
+warning: in the working copy of 'svn_comparison.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: compare Git and Subversion
+[codex/practices-2-3 c0559c1] docs: compare Git and Subversion
+ 1 file changed, 13 insertions(+)
+ create mode 100644 svn_comparison.md
+
+$ git rev-parse HEAD
+c0559c1880c050a51a90f9ba4bc29fa53dcc3630
+
+$ git switch -c practice/rebase-playground
+Switched to a new branch 'practice/rebase-playground'
+
+$ git add notes/merge.md
+warning: in the working copy of 'notes/merge.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: explain merge
+[practice/rebase-playground 6ab006a] docs: explain merge
+ 1 file changed, 1 insertion(+)
+ create mode 100644 notes/merge.md
+
+$ git add notes/rebase.md
+warning: in the working copy of 'notes/rebase.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: explain rebase
+[practice/rebase-playground 92cff0c] docs: explain rebase
+ 1 file changed, 1 insertion(+)
+ create mode 100644 notes/rebase.md
+
+$ git add notes/choice.md
+warning: in the working copy of 'notes/choice.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: explain choice
+[practice/rebase-playground 6e02966] docs: explain choice
+ 1 file changed, 1 insertion(+)
+ create mode 100644 notes/choice.md
+
+$ git log --oneline --graph --decorate -3
+* 6e02966 (HEAD -> practice/rebase-playground) docs: explain choice
+* 92cff0c docs: explain rebase
+* 6ab006a docs: explain merge
+
+$ git rebase -i HEAD~3
+[detached HEAD 9c057df] docs: compare merge and rebase
+ Date: Thu Sep 24 22:47:29 2026 +0300
+ 2 files changed, 2 insertions(+)
+ create mode 100644 notes/merge.md
+ create mode 100644 notes/rebase.md
+Rebasing (2/3)
+Rebasing (3/3)
+Successfully rebased and updated refs/heads/practice/rebase-playground.
+
+$ git log --oneline --graph --decorate -2
+* 6dd5ce9 (HEAD -> practice/rebase-playground) docs: explain choice
+* 9c057df docs: compare merge and rebase
+
+$ git rev-list --count c0559c1880c050a51a90f9ba4bc29fa53dcc3630..HEAD
+2
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git switch -c conflict/readme-update-1 c0559c1880c050a51a90f9ba4bc29fa53dcc3630
+Switched to a new branch 'conflict/readme-update-1'
+
+$ git add README.md
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: update README with student info (variant 1)
+[conflict/readme-update-1 a72d0dd] docs: update README with student info (variant 1)
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+$ git switch -c conflict/readme-update-2 c0559c1880c050a51a90f9ba4bc29fa53dcc3630
+Switched to a new branch 'conflict/readme-update-2'
+
+$ git add README.md
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: update README with student info (variant 2)
+[conflict/readme-update-2 92a6c5a] docs: update README with student info (variant 2)
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+$ git switch conflict/readme-update-1
+Switched to branch 'conflict/readme-update-1'
+
+$ git merge conflict/readme-update-2
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+
+$ git add README.md
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m merge: resolve conflict in README.md
+[conflict/readme-update-1 602ca10] merge: resolve conflict in README.md
+
+$ git log --oneline --graph --decorate -5
+*   602ca10 (HEAD -> conflict/readme-update-1) merge: resolve conflict in README.md
+|\  
+| * 92a6c5a (conflict/readme-update-2) docs: update README with student info (variant 2)
+* | a72d0dd docs: update README with student info (variant 1)
+|/  
+* c0559c1 (codex/practices-2-3) docs: compare Git and Subversion
+* acf9dda docs: add IDE vs CLI notes
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git merge --ff-only conflict/readme-update-1
+Updating c0559c1..602ca10
+Fast-forward
+ README.md | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+$ git branch -d conflict/readme-update-1 conflict/readme-update-2
+Deleted branch conflict/readme-update-1 (was 602ca10).
+Deleted branch conflict/readme-update-2 (was 92a6c5a).
+
+$ git rev-parse HEAD
+602ca10b82c9323f8d275c341f04fe623286766f
+
+$ git switch -c demo/merge-example
+Switched to a new branch 'demo/merge-example'
+
+$ git add feature_a.md
+warning: in the working copy of 'feature_a.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m feat: add feature A description
+[demo/merge-example c59a257] feat: add feature A description
+ 1 file changed, 1 insertion(+)
+ create mode 100644 feature_a.md
+
+$ git add feature_a.md
+warning: in the working copy of 'feature_a.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: add details for feature A
+[demo/merge-example 46ff5fc] docs: add details for feature A
+ 1 file changed, 3 insertions(+)
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git add notes/integration.md
+warning: in the working copy of 'notes/integration.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: update integration notes
+[codex/practices-2-3 25b70ff] docs: update integration notes
+ 1 file changed, 2 insertions(+)
+ create mode 100644 notes/integration.md
+
+$ git rev-parse HEAD
+25b70ffa48f8451bf3cd0ec78d7a42e599a9b5d6
+
+$ git switch -c demo/merge-result
+Switched to a new branch 'demo/merge-result'
+
+$ git merge --no-ff demo/merge-example -m merge: integrate feature A
+Merge made by the 'ort' strategy.
+ feature_a.md | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 feature_a.md
+
+$ git log --oneline --graph --decorate -7
+*   0c0e776 (HEAD -> demo/merge-result) merge: integrate feature A
+|\  
+| * 46ff5fc (demo/merge-example) docs: add details for feature A
+| * c59a257 feat: add feature A description
+* | 25b70ff (codex/practices-2-3) docs: update integration notes
+|/  
+*   602ca10 merge: resolve conflict in README.md
+|\  
+| * 92a6c5a docs: update README with student info (variant 2)
+* | a72d0dd docs: update README with student info (variant 1)
+|/  
+
+$ git switch demo/merge-example
+Switched to branch 'demo/merge-example'
+
+$ git rebase codex/practices-2-3
+Rebasing (1/2)
+Rebasing (2/2)
+Successfully rebased and updated refs/heads/demo/merge-example.
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git merge --ff-only demo/merge-example
+Updating 25b70ff..ff31785
+Fast-forward
+ feature_a.md | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 feature_a.md
+
+$ git log --oneline --graph --decorate -7
+* ff31785 (HEAD -> codex/practices-2-3, demo/merge-example) docs: add details for feature A
+* 89a9fef feat: add feature A description
+* 25b70ff docs: update integration notes
+*   602ca10 merge: resolve conflict in README.md
+|\  
+| * 92a6c5a docs: update README with student info (variant 2)
+* | a72d0dd docs: update README with student info (variant 1)
+|/  
+* c0559c1 docs: compare Git and Subversion
+
+$ git rev-parse demo/merge-result^{tree}
+9c95e82ba39e7f5ffe96294a2528ddac0a413e60
+
+$ git rev-parse HEAD^{tree}
+9c95e82ba39e7f5ffe96294a2528ddac0a413e60
+
+$ git branch -d demo/merge-example
+Deleted branch demo/merge-example (was ff31785).
+
+$ git switch -c feature/calculator
+Switched to a new branch 'feature/calculator'
+
+$ git add calculator.py
+warning: in the working copy of 'calculator.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m start calculator
+[feature/calculator a5d9075] start calculator
+ 1 file changed, 3 insertions(+)
+ create mode 100644 calculator.py
+
+$ git add calculator.py
+warning: in the working copy of 'calculator.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m wip
+[feature/calculator f2a8929] wip
+ 1 file changed, 1 insertion(+)
+
+$ git add calculator.py
+warning: in the working copy of 'calculator.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m add subtract
+[feature/calculator c8164e4] add subtract
+ 1 file changed, 3 insertions(+)
+
+$ git add calculator.py
+warning: in the working copy of 'calculator.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m fix typo in subtract
+[feature/calculator 206e0ab] fix typo in subtract
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git add README_CALC.md
+warning: in the working copy of 'README_CALC.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m add docs
+[feature/calculator 2f779f8] add docs
+ 1 file changed, 2 insertions(+)
+ create mode 100644 README_CALC.md
+
+$ git add calculator.py
+warning: in the working copy of 'calculator.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m oops
+[feature/calculator ff6cb73] oops
+ 1 file changed, 1 insertion(+)
+
+$ git log --oneline --graph --decorate -6
+* ff6cb73 (HEAD -> feature/calculator) oops
+* 2f779f8 add docs
+* 206e0ab fix typo in subtract
+* c8164e4 add subtract
+* f2a8929 wip
+* a5d9075 start calculator
+
+$ git rebase -i HEAD~6
+[detached HEAD d41558d] feat: implement add function
+ Date: Thu Sep 24 22:47:35 2026 +0300
+ 1 file changed, 3 insertions(+)
+ create mode 100644 calculator.py
+[detached HEAD 69bb19f] feat: implement subtract function
+ Date: Thu Sep 24 22:47:35 2026 +0300
+ 1 file changed, 3 insertions(+)
+[detached HEAD 977dceb] docs: add calculator README
+ Date: Thu Sep 24 22:47:36 2026 +0300
+ 1 file changed, 2 insertions(+)
+ create mode 100644 README_CALC.md
+Rebasing (1/6)
+Rebasing (2/6)
+Rebasing (3/6)
+Rebasing (4/6)
+Rebasing (5/6)
+Rebasing (6/6)
+Successfully rebased and updated refs/heads/feature/calculator.
+
+$ git log --oneline --graph --decorate -3
+* 977dceb (HEAD -> feature/calculator) docs: add calculator README
+* 20fcfe1 feat: implement subtract function
+* 8b501f2 feat: implement add function
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git merge --ff-only feature/calculator
+Updating ff31785..977dceb
+Fast-forward
+ README_CALC.md | 2 ++
+ calculator.py  | 7 +++++++
+ 2 files changed, 9 insertions(+)
+ create mode 100644 README_CALC.md
+ create mode 100644 calculator.py
+
+$ git switch -c hotfix/urgent-fix
+Switched to a new branch 'hotfix/urgent-fix'
+
+$ git add calculator.py
+warning: in the working copy of 'calculator.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m fix: critical bug in calculator
+[hotfix/urgent-fix 710ac5e] fix: critical bug in calculator
+ 1 file changed, 2 insertions(+)
+
+$ git rev-parse HEAD
+710ac5eb8e08238f4f529ca99f38f5779e4db997
+
+$ git add calculator.py
+warning: in the working copy of 'calculator.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m feat: add multiply and divide (experimental)
+[hotfix/urgent-fix 9deef0d] feat: add multiply and divide (experimental)
+ 1 file changed, 8 insertions(+)
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git cherry-pick -x 710ac5eb8e08238f4f529ca99f38f5779e4db997
+[codex/practices-2-3 9f0bac9] fix: critical bug in calculator
+ Date: Thu Sep 24 22:47:38 2026 +0300
+ 1 file changed, 2 insertions(+)
+
+$ git log --oneline --graph --decorate -3
+* 9f0bac9 (HEAD -> codex/practices-2-3) fix: critical bug in calculator
+* 977dceb (feature/calculator) docs: add calculator README
+* 20fcfe1 feat: implement subtract function
+
+$ git switch -c temp/lost-branch
+Switched to a new branch 'temp/lost-branch'
+
+$ git add important_data.md
+warning: in the working copy of 'important_data.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m feat: add very important data
+[temp/lost-branch c25097a] feat: add very important data
+ 1 file changed, 1 insertion(+)
+ create mode 100644 important_data.md
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git branch -D temp/lost-branch
+Deleted branch temp/lost-branch (was c25097a).
+
+$ git reflog -15
+9f0bac9 HEAD@{0}: checkout: moving from temp/lost-branch to codex/practices-2-3
+c25097a HEAD@{1}: commit: feat: add very important data
+9f0bac9 HEAD@{2}: checkout: moving from codex/practices-2-3 to temp/lost-branch
+9f0bac9 HEAD@{3}: cherry-pick: fix: critical bug in calculator
+977dceb HEAD@{4}: checkout: moving from hotfix/urgent-fix to codex/practices-2-3
+9deef0d HEAD@{5}: commit: feat: add multiply and divide (experimental)
+710ac5e HEAD@{6}: commit: fix: critical bug in calculator
+977dceb HEAD@{7}: checkout: moving from codex/practices-2-3 to hotfix/urgent-fix
+977dceb HEAD@{8}: merge feature/calculator: Fast-forward
+ff31785 HEAD@{9}: checkout: moving from feature/calculator to codex/practices-2-3
+977dceb HEAD@{10}: rebase (finish): returning to refs/heads/feature/calculator
+977dceb HEAD@{11}: rebase (reword): docs: add calculator README
+6ff450f HEAD@{12}: rebase (reword): add docs
+20fcfe1 HEAD@{13}: rebase (fixup): feat: implement subtract function
+69bb19f HEAD@{14}: rebase (reword): feat: implement subtract function
+
+$ git switch -c temp/recovered-branch c25097a
+Switched to a new branch 'temp/recovered-branch'
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git branch -D temp/recovered-branch
+Deleted branch temp/recovered-branch (was c25097a).
+
+$ git add calculator.py
+warning: in the working copy of 'calculator.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m feat: add new feature (accidentally broken)
+[codex/practices-2-3 4290ec4] feat: add new feature (accidentally broken)
+ 1 file changed, 2 insertions(+)
+
+$ git revert --no-edit HEAD
+[codex/practices-2-3 8ae2b3d] Revert "feat: add new feature (accidentally broken)"
+ Date: Thu Sep 24 22:47:40 2026 +0300
+ 1 file changed, 2 deletions(-)
+
+$ git log --oneline --graph --decorate -3
+* 8ae2b3d (HEAD -> codex/practices-2-3) Revert "feat: add new feature (accidentally broken)"
+* 4290ec4 feat: add new feature (accidentally broken)
+* 9f0bac9 fix: critical bug in calculator
+
+$ git rev-parse HEAD
+8ae2b3db208dd1a5f495c50963813ad4d3368427
+
+$ git switch -c prep/kr-practice
+Switched to a new branch 'prep/kr-practice'
+
+$ git add kr_prep.md
+warning: in the working copy of 'kr_prep.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m draft answers
+[prep/kr-practice 6571be6] draft answers
+ 1 file changed, 4 insertions(+)
+ create mode 100644 kr_prep.md
+
+$ git add kr_prep.md
+warning: in the working copy of 'kr_prep.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m wip rebase answer
+[prep/kr-practice 4796b9f] wip rebase answer
+ 1 file changed, 3 insertions(+)
+
+$ git add kr_prep.md
+warning: in the working copy of 'kr_prep.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m finish remote answer
+[prep/kr-practice b45a088] finish remote answer
+ 1 file changed, 3 insertions(+)
+
+$ git log --oneline --graph --decorate -3
+* b45a088 (HEAD -> prep/kr-practice) finish remote answer
+* 4796b9f wip rebase answer
+* 6571be6 draft answers
+
+$ git rebase -i HEAD~3
+[detached HEAD 121626f] docs: prepare answers for Git assessment
+ Date: Thu Sep 24 22:47:40 2026 +0300
+ 1 file changed, 4 insertions(+)
+ create mode 100644 kr_prep.md
+Rebasing (1/3)
+Rebasing (2/3)
+Rebasing (3/3)
+Successfully rebased and updated refs/heads/prep/kr-practice.
+
+$ git log --oneline --graph --decorate -1
+* 3e02e05 (HEAD -> prep/kr-practice) docs: prepare answers for Git assessment
+
+$ git rev-list --count 8ae2b3db208dd1a5f495c50963813ad4d3368427..HEAD
+1
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git merge --ff-only prep/kr-practice
+Updating 8ae2b3d..3e02e05
+Fast-forward
+ kr_prep.md | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+ create mode 100644 kr_prep.md
+
+$ git switch -c prep/conflict-one
+Switched to a new branch 'prep/conflict-one'
+
+$ git add conflict_practice.md
+warning: in the working copy of 'conflict_practice.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: add merge option
+[prep/conflict-one 30a300c] docs: add merge option
+ 1 file changed, 2 insertions(+)
+ create mode 100644 conflict_practice.md
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git switch -c prep/conflict-two
+Switched to a new branch 'prep/conflict-two'
+
+$ git add conflict_practice.md
+warning: in the working copy of 'conflict_practice.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m docs: add rebase option
+[prep/conflict-two 68989f3] docs: add rebase option
+ 1 file changed, 2 insertions(+)
+ create mode 100644 conflict_practice.md
+
+$ git switch prep/conflict-one
+Switched to branch 'prep/conflict-one'
+
+$ git merge prep/conflict-two
+Auto-merging conflict_practice.md
+CONFLICT (add/add): Merge conflict in conflict_practice.md
+Automatic merge failed; fix conflicts and then commit the result.
+
+$ git add conflict_practice.md
+warning: in the working copy of 'conflict_practice.md', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m merge: resolve assessment practice conflict
+[prep/conflict-one a56068d] merge: resolve assessment practice conflict
+
+$ git log --oneline --graph --decorate -4
+*   a56068d (HEAD -> prep/conflict-one) merge: resolve assessment practice conflict
+|\  
+| * 68989f3 (prep/conflict-two) docs: add rebase option
+* | 30a300c docs: add merge option
+|/  
+* 3e02e05 (prep/kr-practice, codex/practices-2-3) docs: prepare answers for Git assessment
+
+$ git switch codex/practices-2-3
+Switched to branch 'codex/practices-2-3'
+
+$ git merge --ff-only prep/conflict-one
+Updating 3e02e05..a56068d
+Fast-forward
+ conflict_practice.md | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 conflict_practice.md
+
+$ git branch -d prep/conflict-one prep/conflict-two
+Deleted branch prep/conflict-one (was a56068d).
+Deleted branch prep/conflict-two (was 68989f3).
+
+$ git add main.py
+warning: in the working copy of 'main.py', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m fix: use Python print function
+[codex/practices-2-3 0663e2f] fix: use Python print function
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git add .gitignore
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m chore: ignore Python runtime files
+[codex/practices-2-3 d45b359] chore: ignore Python runtime files
+ 1 file changed, 3 insertions(+)
+ create mode 100644 .gitignore

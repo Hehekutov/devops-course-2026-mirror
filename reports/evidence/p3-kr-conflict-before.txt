@@ -1,0 +1,10 @@
+Auto-merging conflict_practice.md
+CONFLICT (add/add): Merge conflict in conflict_practice.md
+Automatic merge failed; fix conflicts and then commit the result.
+
+# Решение
+<<<<<<< HEAD
+Вариант A: хранить историю с merge.
+=======
+Вариант B: обновлять личную ветку rebase.
+>>>>>>> prep/conflict-two

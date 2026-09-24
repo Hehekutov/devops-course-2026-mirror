@@ -1,0 +1,18 @@
+9f0bac9 HEAD@{0}: checkout: moving from temp/lost-branch to codex/practices-2-3
+c25097a HEAD@{1}: commit: feat: add very important data
+9f0bac9 HEAD@{2}: checkout: moving from codex/practices-2-3 to temp/lost-branch
+9f0bac9 HEAD@{3}: cherry-pick: fix: critical bug in calculator
+977dceb HEAD@{4}: checkout: moving from hotfix/urgent-fix to codex/practices-2-3
+9deef0d HEAD@{5}: commit: feat: add multiply and divide (experimental)
+710ac5e HEAD@{6}: commit: fix: critical bug in calculator
+977dceb HEAD@{7}: checkout: moving from codex/practices-2-3 to hotfix/urgent-fix
+977dceb HEAD@{8}: merge feature/calculator: Fast-forward
+ff31785 HEAD@{9}: checkout: moving from feature/calculator to codex/practices-2-3
+977dceb HEAD@{10}: rebase (finish): returning to refs/heads/feature/calculator
+977dceb HEAD@{11}: rebase (reword): docs: add calculator README
+6ff450f HEAD@{12}: rebase (reword): add docs
+20fcfe1 HEAD@{13}: rebase (fixup): feat: implement subtract function
+69bb19f HEAD@{14}: rebase (reword): feat: implement subtract function
+
+Recovered commit: c25097a
+# This is important data

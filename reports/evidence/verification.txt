@@ -1,0 +1,8 @@
+$ C:\Users\денис\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe main.py
+Hello World!
+
+PASS: add/subtract (positive, negative, zero, fractional inputs).
+PASS: IMPORTANT_FIX present; experimental functions and BROKEN_CODE absent.
+$ git diff --check
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README_CALC.md', LF will be replaced by CRLF the next time Git touches it

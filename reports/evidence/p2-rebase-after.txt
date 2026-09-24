@@ -1,0 +1,2 @@
+* 6dd5ce9 (HEAD -> practice/rebase-playground) docs: explain choice
+* 9c057df docs: compare merge and rebase

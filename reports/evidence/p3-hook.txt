@@ -1,0 +1,8 @@
+$ git commit -m bad message
+ERROR: commit message must follow Conventional Commits.
+Expected: <type>: <description>; example: docs: update README
+
+$ git commit -m chore: test git hook
+[codex/practices-2-3 30155b2] chore: test git hook
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test_hook.txt

@@ -1,0 +1,13 @@
+* 8ae2b3d (HEAD -> codex/practices-2-3) Revert "feat: add new feature (accidentally broken)"
+* 4290ec4 feat: add new feature (accidentally broken)
+* 9f0bac9 fix: critical bug in calculator
+
+# Calculator app
+def add(a, b):
+    return a + b
+# TODO: add more functions
+
+def subtract(a, b):
+    return a - b  # fixed
+
+IMPORTANT_FIX = True

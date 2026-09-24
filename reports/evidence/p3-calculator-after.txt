@@ -1,0 +1,11 @@
+* 977dceb (HEAD -> feature/calculator) docs: add calculator README
+* 20fcfe1 feat: implement subtract function
+* 8b501f2 feat: implement add function
+
+# Calculator app
+def add(a, b):
+    return a + b
+# TODO: add more functions
+
+def subtract(a, b):
+    return a - b  # fixed
